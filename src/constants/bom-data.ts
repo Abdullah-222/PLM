@@ -1,0 +1,162 @@
+import type { AssemblyItem, BomNode, BomSnapshot } from "@/types";
+
+const now = new Date().toISOString();
+
+export const bomAssembliesSeed: AssemblyItem[] = [
+  {
+    id: "asm-engine",
+    name: "Engine Assembly",
+    revision: "B",
+    rootNodeId: "node-engine-root",
+    productFamily: "Powertrain",
+    updatedAt: now,
+  },
+  {
+    id: "asm-battery",
+    name: "Battery Module",
+    revision: "A",
+    rootNodeId: "node-battery-root",
+    productFamily: "Energy Storage",
+    updatedAt: now,
+  },
+  {
+    id: "asm-gearbox",
+    name: "Gearbox Assembly",
+    revision: "C",
+    rootNodeId: "node-gearbox-root",
+    productFamily: "Transmission",
+    updatedAt: now,
+  },
+];
+
+export const bomNodesSeed: Record<string, BomNode[]> = {
+  "asm-engine": [
+    {
+      id: "node-engine-root",
+      partNumber: "ASM-ENG-1000",
+      partName: "Engine Assembly",
+      description: "Main powertrain assembly",
+      quantity: 1,
+      unit: "EA",
+      revision: "B",
+      lifecycleState: "Released",
+      cost: 3600,
+      children: [
+        {
+          id: "node-cylinder-head",
+          partNumber: "PRT-ENG-2101",
+          partName: "Cylinder Head",
+          description: "Precision machined cylinder head",
+          quantity: 1,
+          unit: "EA",
+          revision: "B",
+          lifecycleState: "Released",
+          cost: 680,
+          children: [],
+        },
+        {
+          id: "node-crankshaft",
+          partNumber: "PRT-ENG-2110",
+          partName: "Crankshaft",
+          description: "Forged steel crankshaft",
+          quantity: 1,
+          unit: "EA",
+          revision: "A",
+          lifecycleState: "In Review",
+          cost: 510,
+          children: [],
+        },
+        {
+          id: "node-harness",
+          partNumber: "PRT-ELC-9004",
+          partName: "Wiring Harness",
+          description: "Engine electrical harness",
+          quantity: 2,
+          unit: "EA",
+          revision: "C",
+          lifecycleState: "Released",
+          cost: 120,
+          children: [],
+        },
+      ],
+    },
+  ],
+  "asm-battery": [
+    {
+      id: "node-battery-root",
+      partNumber: "ASM-BAT-2000",
+      partName: "Battery Module",
+      description: "High-voltage battery module",
+      quantity: 1,
+      unit: "EA",
+      revision: "A",
+      lifecycleState: "Released",
+      cost: 2800,
+      children: [
+        {
+          id: "node-battery-cell",
+          partNumber: "PRT-BAT-3100",
+          partName: "Battery Cell",
+          description: "Lithium-ion pouch cell",
+          quantity: 96,
+          unit: "EA",
+          revision: "D",
+          lifecycleState: "Released",
+          cost: 14,
+          children: [],
+        },
+        {
+          id: "node-control-board",
+          partNumber: "PRT-ELC-3020",
+          partName: "Control Board",
+          description: "Battery management PCB",
+          quantity: 1,
+          unit: "EA",
+          revision: "B",
+          lifecycleState: "In Review",
+          cost: 215,
+          children: [],
+        },
+      ],
+    },
+  ],
+  "asm-gearbox": [
+    {
+      id: "node-gearbox-root",
+      partNumber: "ASM-GRB-3000",
+      partName: "Gearbox Assembly",
+      description: "6-speed gearbox",
+      quantity: 1,
+      unit: "EA",
+      revision: "C",
+      lifecycleState: "Released",
+      cost: 3100,
+      children: [
+        {
+          id: "node-gearset",
+          partNumber: "PRT-GRB-4101",
+          partName: "Primary Gearset",
+          description: "Hardened primary gearset",
+          quantity: 1,
+          unit: "SET",
+          revision: "C",
+          lifecycleState: "Released",
+          cost: 780,
+          children: [],
+        },
+      ],
+    },
+  ],
+};
+
+export const bomSnapshotsSeed: BomSnapshot[] = [
+  {
+    id: "snap-1",
+    assemblyId: "asm-engine",
+    snapshotName: "Engine Rev B Baseline",
+    date: now,
+    user: "A. Khan",
+    revision: "B",
+    nodes: bomNodesSeed["asm-engine"],
+  },
+];

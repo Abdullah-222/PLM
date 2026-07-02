@@ -1,0 +1,14 @@
+export { CreateProductDialog } from "./create-product-dialog";
+export { ProductHeader } from "./product-header";
+export { ProductStatusBadge } from "./product-status-badge";
+export { ProductsTable } from "./products-table";
+export { ProductsFilters } from "./products-filters";
+export { TablePagination } from "./table-pagination";
+export { RevisionTimeline } from "./revision-timeline";
+export { WorkflowStepper } from "./workflow-stepper";
+export { BomTree } from "./bom-tree";
+export { DocumentsTable } from "./documents-table";
+export { ActivityFeed } from "./activity-feed";
+export { MetadataForm } from "./metadata-form";
+export { ProductOverview } from "./product-overview";
+export { ChangesTable } from "./changes-table";
